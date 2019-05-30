@@ -10,9 +10,14 @@
                <button type="submit" class="btn btn-primary">Buscar</button>
              </form>
 
+             <a href="/genres/create" class="btn btn-success">Nuevo Genero</a>
 
-  @foreach ($actores as $actor)
-    <a href="/genres/{{$genero->id}}">{{ $actor->first_name }}</a><br>
+             <div>
+  @foreach ($generos as $genero)
+    <a href="/genres/{{$genero->id}}">{{ $genero->name }}</a><br>
   @endforeach
+            </div>
+
+
 
 @endsection
