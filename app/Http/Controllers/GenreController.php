@@ -65,7 +65,7 @@ class GenreController extends Controller
         // ]);
         // $genre->save();
 
-        return redirect('/genres');
+        return redirect('/genres')->with('mensaje', 'Genero guardado exitosamente!');
     }
 
 

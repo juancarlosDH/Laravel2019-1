@@ -3,6 +3,7 @@
 @section('content')
 
 <?php
+/*
 try{
     //esto muestra los errores con nombres de tablas y campos
     $opt= [\PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -55,6 +56,7 @@ try{
     $query = $conex->prepare($consulta);
     $query->execute();
     $resultados = $query->fetchAll(PDO::FETCH_ASSOC);
+    */
   ?>
        <section class="principal">
            <article class="nuevas" id="peliculas">
@@ -82,12 +84,10 @@ try{
                          <span class="sr-only">Previous</span>
                        </a>
                      </li>
-                     <?php for($i = 1; $i <= $cantidad; $i++ ){
-                       echo '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';
-                     }
-                      ?>
-
-                     <li class="page-item">
+                     @for($i = 1; $i <= $cantidad; $i++ )
+                       <li class="page-item"><a class="page-link" href="?pagina={{$i}}">{{$i}}</a></li>
+                     @endfor
+                    <li class="page-item">
                        <a class="page-link" href="#" aria-label="Next">
                          <span aria-hidden="true">&raquo;</span>
                          <span class="sr-only">Next</span>
@@ -98,33 +98,21 @@ try{
                </h2>
 
                <div class="card-group">
-
-                   <?php
-                       foreach ($resultados as $peli) {
-                           //me traigo el genero de esta peli
-        // if(isset($peli['genre_id'])){
-        //     $queryGenero->execute([ $peli['genre_id'] ]);
-        //     $genero = $queryGenero->fetch(PDO::FETCH_ASSOC);
-        //     $nombreGenero = $genero['name'];
-        // }else{
-        //     $nombreGenero = 'Sin Genero';
-        // }
-        //imprimo el titulo de la peli y su genero
-        ?>
-        <div class="card">
-          <img class="card-img-top" src="images/default.png" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title"><?= $peli['title'] ?></h5>
-            <p class="card-text"><?= $peli['nombreGenero'] ?></p>
-            <p class="card-text">Rating: <?= $peli['rating'] ?></p>
-            <p class="card-text">Awards: <?= $peli['awards'] ?></p>
-            <p class="card-text">
-              <a class="btn btn-primary" href="detallePelicula.php?id=<?= $peli['id'] ?>">Ver Mas</a>
-              <a class="btn btn-success" href="modificarPelicula.php?id=<?= $peli['id'] ?>">Editar</a>
-              </p>
-          </div>
-        </div>
-      <?php } ?>
+                   @foreach ($peliculas as $peli)
+                    <div class="card">
+                      <img class="card-img-top" src="images/default.png" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">{{$peli->title}}</h5>
+<p class="card-text">Genero: {{$peli->dameNombreGenero()}}</p>
+                        <p class="card-text">Rating: {{$peli->rating}}</p>
+                        <p class="card-text">Awards: {{$peli->awards}}</p>
+                        <p class="card-text">
+                          <a class="btn btn-primary" href="detallePelicula.php?id={{$peli->id}}">Ver Mas</a>
+      <a class="btn btn-success" href="/movies/edit/{{$peli->id}}">Editar</a>
+                          </p>
+                      </div>
+                    </div>
+                  @endforeach
               </div>
 
 

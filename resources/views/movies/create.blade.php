@@ -6,30 +6,41 @@
            <div class="peliculas">
 
              <form method="post" action="">
-              <div class="form-group">
-                <div>
+               <h2>Nueva Pelicula</h2>
+               <div class="form-row">
+                <div  class="form-group col-md-4">
                     <label for="titulo">Titulo</label>
-                    <input type="text" name="title" id="title"/>
+                    <input class="form-control" type="text" name="title" id="title"/>
                 </div>
-                <div>
+                <div  class="form-group col-md-4">
                     <label for="rating">Rating</label>
-                    <input type="text" name="rating" id="rating"/>
+                    <input class="form-control" type="text" name="rating" id="rating"/>
                 </div>
-                <div>
+                <div  class="form-group col-md-4">
                     <label for="premios">Premios</label>
-                    <input type="text" name="awards" id="awards"/>
+                    <input class="form-control" type="text" name="awards" id="awards"/>
                 </div>
-                <div>
+                <div  class="form-group col-md-4">
                     <label for="length">Duracion</label>
-                    <input type="text" name="length" id="length"/>
+                    <input class="form-control" type="text" name="length" id="length"/>
                 </div>
 
-                <div>
+                <div  class="form-group col-md-4">
                     <label for="duracion">Extreno</label>
-                    <input type="date" name="release_date" id="release_date"/>
+                    <input class="form-control" type="date" name="release_date" id="release_date"/>
                 </div>
 
-                <input type="submit" value="Agregar Pelicula" name="submit"/>
+                <div  class="form-group col-md-4">
+                    <label for="genre">Genero</label>
+                    <select class="form-control" name="genre_id">
+                      @foreach ($generos as $genero)
+                      <option value="{{$genero->id}}"> {{$genero->name}} </option>
+                      @endforeach
+                    </select>
+                </div>
+                </div>
+                <button type="submit" name="button" class="btn btn-primary">Guardar</button>
+
             </form>
           </div>
       </article>
