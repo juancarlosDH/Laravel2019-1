@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Movie;
 use App\Genre;
+use App\Actor;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -54,9 +55,26 @@ class MovieController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movie)
+    public function show($id)
     {
-        //
+      $movie = Movie::find($id);
+      $actors = Actor::all();
+      //dd($movie->actors);
+        return view('movies.show')
+          ->with([
+            'pelicula' => $movie,
+            'actores' => $actors
+          ]);
+    }
+
+    public function addActor($id, Request $request)
+    {
+        //busco la movie por el id
+          $movie = Movie::find($id);
+        //guardo o attacheo el actor a la movie
+          $movie->actors()->attach($request->actor_id);
+        //redirijo a show de la movie
+        return redirect('/movies/' . $id);
     }
 
     /**

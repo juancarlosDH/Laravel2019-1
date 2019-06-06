@@ -11,6 +11,8 @@ Route::get('/genres', 'GenreController@index');
 Route::post('/movies/edit/{id}', 'MovieController@update');
 Route::get('/movies/edit/{id}', 'MovieController@edit');
 Route::get('/movies/create', 'MovieController@create');
+Route::get('/movies/{id}', 'MovieController@show');
+Route::post('/movies/{id}', 'MovieController@addActor');
 Route::get('/movies', 'MovieController@index');
 
 

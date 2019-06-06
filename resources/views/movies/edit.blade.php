@@ -47,6 +47,12 @@
                          <div class="alert alert-danger">{{ $message }}</div>
                      @enderror
                 </div>
+
+                <div  class="form-group col-md-4">
+                    <label for="duracion">Genero</label>
+                    {{ $pelicula->genre->id }} - 
+                    {{ $pelicula->genre->name }}
+                </div>
                 </div>
                 <button type="submit" name="button" class="btn btn-primary">Guardar</button>
 

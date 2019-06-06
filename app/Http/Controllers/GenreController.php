@@ -22,10 +22,15 @@ class GenreController extends Controller
     {
       //  $genres = Genre::where('id', '=', $id)->first();
 
-        $genres = Genre::find($id);
+        $genre = Genre::find($id);
         // Hace un where, solo para llave primaria
-        dd($genres);
+        //dd($genres);
+        return view('genres.show')->with(['genero'=>$genre]);
+
+
     }
+
+
 
     public function create()
     {
