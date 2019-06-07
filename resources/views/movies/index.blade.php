@@ -100,7 +100,7 @@ try{
                <div class="card-group">
                    @foreach ($peliculas as $peli)
                     <div class="card">
-                      <img class="card-img-top" src="images/default.png" alt="Card image cap">
+                      <img class="card-img-top" src="/storage/{{$peli->poster}}" alt="{{$peli->title}}">
                       <div class="card-body">
                         <h5 class="card-title">{{$peli->title}}</h5>
 <p class="card-text">Genero: {{ $peli->dameGenero() }}</p>

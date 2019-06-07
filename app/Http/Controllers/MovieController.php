@@ -99,6 +99,7 @@ class MovieController extends Controller
      */
     public function update($id, Request $request)
     {
+      //dd($request->file('poster'));
       $this->validate($request,
         [
           'title'=> 'required',
@@ -106,11 +107,13 @@ class MovieController extends Controller
           'awards'=> 'required|numeric',
           'length'=> 'required|numeric',
           'release_date' => 'nullable|date',
+          'poster' => 'nullable|image'
         ],
         [
           'required' => 'Campo obligatorio',
           'numeric' => 'Debe ser un numero',
           'date' => 'Fecha invalida',
+          'image' => 'Imagen invalida'
         ]
       );
         //dd($request->title);
@@ -123,9 +126,19 @@ class MovieController extends Controller
         $peliculaAEditar->awards = $request->awards;
         $peliculaAEditar->release_date = $request->release_date;
 
+        //si subo un archivo lo guardo
+        if($request->file('poster')){
+          //al archivo que subi lo voy a guardar en el filesystem de laravel
+          $rutaDelArchivo = $request->file('poster')->store('public');
+          //le saco solo el nombre
+          $nombreArchivo = basename($rutaDelArchivo);
+          //guardo el nombre del archivo en el campo poster
+          $peliculaAEditar->poster = $nombreArchivo;
+        }
+
         //lo mando a guardar
         $peliculaAEditar->save();
-
+        return redirect('/movies');
     }
 
     /**

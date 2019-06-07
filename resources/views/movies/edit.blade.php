@@ -5,7 +5,7 @@
        <article class="nuevas" id="peliculas">
            <div class="peliculas">
 
-             <form method="post" action="">
+             <form method="post" action="" enctype="multipart/form-data">
                @csrf
                <h2>Edición de Pelicula</h2>
                <div class="form-row">
@@ -49,9 +49,17 @@
                 </div>
 
                 <div  class="form-group col-md-4">
-                    <label for="duracion">Genero</label>
-                    {{ $pelicula->genre->id }} - 
+                    <label for="">Genero</label>
+                    {{ $pelicula->genre->id }} -
                     {{ $pelicula->genre->name }}
+                </div>
+                <div  class="form-group col-md-4">
+                    <label for="poster">Poster</label>
+                    <img src="/storage/{{$pelicula->poster}}" width="100px" alt="">
+                    Cambiar imagen:<input class="form-control" type="file" name="poster" value="">
+                    @error('poster')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 </div>
                 <button type="submit" name="button" class="btn btn-primary">Guardar</button>
