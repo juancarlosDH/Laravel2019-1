@@ -6,6 +6,7 @@ use App\Movie;
 use App\Genre;
 use App\Actor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -16,9 +17,9 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::all();
+        $movies = Movie::paginate(6);
         $generos = Genre::all();
-        $cantidad = ceil($movies->count() / 6);;
+        $cantidad = ceil($movies->count() / 6);
         return view('movies.index')
           ->with([
             'cantidad' => $cantidad,
@@ -58,12 +59,28 @@ class MovieController extends Controller
     public function show($id)
     {
       $movie = Movie::find($id);
-      $actors = Actor::all();
+      $actors = $movie->actors;
+
+      $actoresOrdenados = $actors->sortBy('first_name');
+
+      //aca lo recorro con un foreach sencillo
+      foreach ($actoresOrdenados as $actor) {
+        $arrayIds[] = $actor->id;
+      }
+
+      //aqui voy a usar un map para devolver una collection
+      $arrayIds = $actoresOrdenados->map( function($actor){
+        return $actor->id;
+      });
+
+      $actors = Actor::whereNotIn('id', $arrayIds)->get()->sortBy('first_name');
+      //$actors = Actor::all()->sortBy('first_name');
       //dd($movie->actors);
         return view('movies.show')
           ->with([
             'pelicula' => $movie,
-            'actores' => $actors
+            'actores' => $actors,
+            'actoresOrdenados' => $actoresOrdenados,
           ]);
     }
 
@@ -128,6 +145,10 @@ class MovieController extends Controller
 
         //si subo un archivo lo guardo
         if($request->file('poster')){
+          //si tenia una imagen anterior la elimino, no elimino la default
+          if($peliculaAEditar->poster && $peliculaAEditar->poster != 'default.png'){
+            Storage::disk('public')->delete($peliculaAEditar->poster);
+          }
           //al archivo que subi lo voy a guardar en el filesystem de laravel
           $rutaDelArchivo = $request->file('poster')->store('public');
           //le saco solo el nombre

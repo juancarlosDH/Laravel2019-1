@@ -40,7 +40,7 @@
                 <h4>Actores</h4>
                 <ul>
 
-                  @foreach ($pelicula->actors as $actor)
+                  @foreach ($actoresOrdenados as $actor)
                     <li>{{$actor->getFullName()}}</li>
                   @endforeach
                 </ul>
