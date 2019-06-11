@@ -25,6 +25,7 @@
       @else
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <img src="/storage/{{Auth::user()->avatar}}" alt="" class="avatar">
                 {{ Auth::user()->name }} <span class="caret"></span>
             </a>
 

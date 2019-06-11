@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="/css/digital_movies.css">
     <link rel="stylesheet" href="/css/peliculas.css">
+    <link rel="stylesheet" href="/css/profile.css">
 
 </head>
 <body>
