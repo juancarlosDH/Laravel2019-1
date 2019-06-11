@@ -64,13 +64,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+      //dd($data);
+      $nombreArchivo = 'user_default.jpg';
       //debemos tener en cuenta que si hay nun archivo, lo subimos y le guardamos la ruta
-      
+      if(isset($data['avatar'])){
+        //al archivo que subi lo voy a guardar en el filesystem de laravel
+        $rutaDelArchivo = $data['avatar']->store('public');
+        //le saco solo el nombre
+        $nombreArchivo = basename($rutaDelArchivo);
+      }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'dni' => $data['dni']
+            'dni' => $data['dni'],
+            'avatar' => $nombreArchivo,
         ]);
     }
 }
