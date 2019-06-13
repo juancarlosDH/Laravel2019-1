@@ -7,6 +7,7 @@ use App\Genre;
 
 class GenreController extends Controller
 {
+
     public function index()
     {
       if(isset($_GET['name'])){

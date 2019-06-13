@@ -10,7 +10,7 @@ Route::get('/genres', 'GenreController@index');
 
 Route::post('/movies/edit/{id}', 'MovieController@update')->middleware('auth');
 Route::get('/movies/edit/{id}', 'MovieController@edit')->middleware('auth');
-Route::get('/movies/create', 'MovieController@create')->middleware('auth');
+Route::get('/movies/create', 'MovieController@create')->middleware(['admin', 'auth']);
 Route::get('/movies/{id}', 'MovieController@show')->middleware('auth');
 Route::post('/movies/{id}', 'MovieController@addActor');
 Route::get('/movies', 'MovieController@index');

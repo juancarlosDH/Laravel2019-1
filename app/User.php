@@ -37,12 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function carrito()
+    public function favoritos()
     {
-      return  $this->belongsToMany(Product::class, 'carts');
+      return  $this->belongsToMany(Movie::class);
     }
 
-
+    public function isAdmin()
+    {
+      return $this->is_admin === 1;
+    }
 
 
 
