@@ -55,7 +55,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Login') }}
                                 </button>
 
@@ -66,6 +66,16 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-sm-6">
+                                <a href="" class="btn btn-danger">Ingresar con Google</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/login/facebook" class="btn btn-primary">Ingresar con Facebook</a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

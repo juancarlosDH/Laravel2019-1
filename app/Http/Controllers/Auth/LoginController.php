@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -37,7 +38,31 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    
+
+    public function redirectToProviderFB()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderCallbackFB()
+   {
+       $user = Socialite::driver('facebook')->user();
+
+       //estos son los datos del usuario
+       //dd($user);
+
+       //deberia de preguntar si el usuario que me mando FB esta en mi Base
+       //si no esta lo registro
+           /*User::create(
+
+           );*/
+
+      //igual lo logeo
+
+      //redirecciono
+
+   }
+
 
 
 
