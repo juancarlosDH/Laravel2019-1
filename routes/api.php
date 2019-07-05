@@ -15,6 +15,24 @@ use Illuminate\Http\Request;
 
 Route::get('/movies', 'ApiMovieController@getMovies');
 
+Route::get('/buscarEmail', 'ApiUserController@getUser');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

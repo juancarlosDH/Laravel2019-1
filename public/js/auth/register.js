@@ -1,8 +1,9 @@
 var regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
 function validarVacio(input) {
-    if (input.value == '') {
+    if (input.value.trim() == '') {
         pintarError(input, 'Debe de estar lleno');
+        input.value = '';
         return true;
     }
     return false

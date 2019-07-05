@@ -26,7 +26,7 @@ window.onload = function () {
             event.preventDefault();
         }
 
-        if (password.value == '') {
+        if (password.value.trim() == '') {
             password.classList.add('is-invalid');
             var error = document.createElement('span');
             error.innerText = 'Debe de estar lleno';
@@ -36,12 +36,13 @@ window.onload = function () {
             }
             div.append(error);
             event.preventDefault();
+            password.value = '';
         }
 
 
 
 
         console.log('se esta enviando');
-        
+
     }
 }

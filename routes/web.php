@@ -31,7 +31,7 @@ Route::get('/', 'MainController@index');
 // Route::get('/sumar/{num1}/{num2}','CalculadoraController@sumar');
 // Route::get('/restar/{num1}/{num2}','CalculadoraController@restar');
 
-//rutas de autenticacion
+//rutas de autenticacion de Laravel
 Auth::routes();
 
 //Usando rutas para autenticarnos con Facebook
