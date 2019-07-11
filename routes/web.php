@@ -10,7 +10,7 @@ Route::get('/cursos3', 'CursoController@getConCurl');
 //esta ruta carga el formulario
 Route::get('/genres/create', 'GenreController@create');
 //esta ruta lo guarda
-Route::post('/crearGenero', 'GenreController@save');
+Route::post('/genres/create', 'GenreController@save');
 Route::get('/genres/{id}', 'GenreController@oneGenre');
 Route::get('/genres', 'GenreController@index');
 

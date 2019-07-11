@@ -41,7 +41,7 @@ class GenreController extends Controller
     public function save(Request $request)
     {
         // $nombreGenero = $request->input('name');
-        // dd($nombreGenero);
+         //return response()->json(dd($request->all()));
 
         //uso las validaciones de Laravel
         $this->validate( $request, [
@@ -54,7 +54,7 @@ class GenreController extends Controller
 
         //si esta todo bien procedo a Guardar
         // primera forma create
-        Genre::create(
+        $genre = Genre::create(
           [
             'name' => $request->input('name')
           ]
@@ -70,7 +70,9 @@ class GenreController extends Controller
         //   'name' => $request->input('name')
         // ]);
         // $genre->save();
-
+        if($request->isJson()){
+            return response()->json(['genero' => $genre]);
+        }
         return redirect('/genres')->with('mensaje', 'Genero guardado exitosamente!');
     }
 

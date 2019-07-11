@@ -228,6 +228,14 @@ select, option{
     color:black;
 }
 
+.modal .modal-content label, .modal .modal-content h2, .modal .modal-content h3, .modal .modal-content h4 {
+    color: black;
+}
+
+span.invalid-feedback strong{
+    color: #dc3545;
+}
+
 @media( max-width:768px ){
   .container{
     width: 100vw;

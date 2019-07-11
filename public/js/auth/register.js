@@ -1,40 +1,31 @@
-var regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
-function validarVacio(input) {
-    if (input.value.trim() == '') {
-        pintarError(input, 'Debe de estar lleno');
-        input.value = '';
-        return true;
-    }
-    return false
-}
-
-function pintarError(input, mensaje) {
-    input.classList.add('is-invalid');
-    var error = document.createElement('span');
-    error.setAttribute('class','invalid-feedback');
-    var strong = document.createElement('strong');
-    strong.innerText = mensaje;
-    var div = elemento.parentElement;
-    if (div.children[1]) {
-        div.removeChild(div.children[1]);
-    }
-    error.append(strong);
-    div.append(error);
-}
-
 window.onload = function () {
     var form = document.querySelector('form');
 
-    // email.onblur = function () {
-    //     if (regexEmail.test(this.value)) {
-    //         this.classList.remove('is-invalid');
-    //     }
-    // }
+     email.onblur = function () {
+         if (regexEmail.test(this.value)) {
+             this.classList.remove('is-invalid');
+         }
+     }
+
+     email.addEventListener('blur', function(){
+        console.log('hago la llamada fetch');
+        fetch('http://localhost:8000/api/buscarEmail')
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                console.log(data)
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+
+     });
 
     form.onsubmit = function (event) {
         var elementos = this.elements;
         for (elemento of elementos) {
+            elemento.classList.remove('is-invalid');
             if (elemento.type == 'submit' || elemento.type == 'hidden') {
                 continue;
             }

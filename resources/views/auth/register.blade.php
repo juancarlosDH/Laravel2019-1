@@ -102,5 +102,6 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="js/librerias.js"></script>
 <script type="text/javascript" src="/js/auth/register.js"></script>
 @endsection
