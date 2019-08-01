@@ -25,8 +25,6 @@ Route::get('/movies', 'MovieController@index');
 //mi ruta del home
 Route::get('/home', 'HomeController@index')->name('home');
 
-//ruta inicial
-Route::get('/', 'MainController@index');
 
 // Route::get('/sumar/{num1}/{num2}','CalculadoraController@sumar');
 // Route::get('/restar/{num1}/{num2}','CalculadoraController@restar');
@@ -34,10 +32,14 @@ Route::get('/', 'MainController@index');
 //rutas de autenticacion de Laravel
 Auth::routes();
 
+Route::get('/profile/sendEmail', 'ProfileController@sendEmail');
+
 //Usando rutas para autenticarnos con Facebook
 Route::get('/login/facebook', 'Auth\LoginController@redirectToProviderFB');
 Route::get('/login/facebook/callback', 'Auth\LoginController@handleProviderCallbackFB');
 
+//ruta inicial
+Route::get('/', 'MainController@index');
 
 
 

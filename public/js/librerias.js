@@ -15,7 +15,7 @@ function pintarError(input, mensaje) {
     error.setAttribute('class','invalid-feedback');
     var strong = document.createElement('strong');
     strong.innerText = mensaje;
-    var div = elemento.parentElement;
+    var div = input.parentElement;
     if (div.children[1]) {
         div.removeChild(div.children[1]);
     }

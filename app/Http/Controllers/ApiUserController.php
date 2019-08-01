@@ -9,11 +9,12 @@ class ApiUserController extends Controller
 {
     public function getUser(Request $request){
         $email = $request->input('email');
+        $user = User::where('email', '=', $email)->first();
 
-        if ($user = User::where('email', '=', $email)->first()) {
-            return ['existe'=>true];
+        if ($user) {
+            return json_encode(['existe'=>true]);
         }
 
-        return ['existe'=>false];
+        return json_encode(['existe'=>false]);
     }
 }

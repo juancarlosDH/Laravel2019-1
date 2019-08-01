@@ -13,7 +13,6 @@ window.onload = function () {
     }
 
     form.onsubmit = function (event) {
-        //event.preventDefault();
         if (!regexEmail.test(email.value)) {
             email.classList.add('is-invalid');
             var error = document.createElement('span');
@@ -39,7 +38,24 @@ window.onload = function () {
             password.value = '';
         }
 
+        if (regexEmail.test(email.value) && password.value.trim() != '') {
+            //hice la peticion a la api que esta en laravel, mandando por query string el valor del email
+            fetch ('http://localhost:8000/api/buscarEmail?email=' + email.value)
+                //.then( function(response) { return response.json() } )
+                .then( (response) => { return response.json(); } )
+                .then( (datos) => {
+                    //aqui me va a responder en json
+                    if ( datos.existe == false) {
+                        alert('usuario o clave invalidos');
+                    }
+                    console.log(datos);
+                } )
+                .catch( (error) => {
+                    console.log(error);
+                });
 
+
+        }
 
 
         console.log('se esta enviando');
