@@ -16,8 +16,9 @@ class ProfileController extends Controller
 
          Mail::to('juan@mail.com')->send(new ProfileMail());
 
+         return redirect('/home');
 
 
-         
+
     }
 }
