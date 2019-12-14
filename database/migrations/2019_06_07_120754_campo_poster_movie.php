@@ -14,7 +14,7 @@ class CampoPosterMovie extends Migration
     public function up()
     {
         Schema::table('movies', function (Blueprint $table) {
-          $table->string('poster', 200)->nullable()->default('default.png');
+          $table->string('poster2', 200)->nullable()->default('default.png');
         });
     }
 

@@ -56,7 +56,8 @@ class GenreController extends Controller
         // primera forma create
         $genre = Genre::create(
           [
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'ranking' => 0,
           ]
         );
 
